@@ -147,7 +147,7 @@
 
   <section class="card" id="pheno">
     <h2><span class="n">2</span>Resistance phenotypes of the breeding lines</h2>
-    <p>Distribution of line values from the greenhouse screens, on the empirical-logit scale used in the GWAS or back-transformed to percent resistant plants. Each bar is split by whether lines carry the resistance allele at the main locus for that pest: <i>Gb3</i> for greenbug, <i>H6</i> for Hessian fly.</p>
+    <p>Distribution of line values from the greenhouse screens, as percent resistant plants or on the empirical-logit scale used in the GWAS. Each bar is split by whether lines carry the resistance allele at the main locus for that pest: <i>Gb3</i> for greenbug, <i>H6</i> for Hessian fly.</p>
     <div class="seg" role="group" aria-label="Phenotype scale" id="pheno-scale"></div>
     <div class="legend"><span><i class="sw sq" style="background:var(--s1)"></i>Carries the resistance allele</span><span><i class="sw sq" style="background:var(--muted-pt)"></i>Other allele</span></div>
     <div class="hists" id="pheno-charts"></div>
@@ -302,8 +302,8 @@
       pct: { name: '% resistant plants', axis: 'resistant plants', ticks: [0, 50, 100], tl: (v) => `${v}%`, rng: (b) => `${b.lo}–${b.hi}% resistant plants`,
         stat: (P) => `${fmt(P.n)} lines · mean ${fmt(P.mean)}% · ${fmt(P.pctR)}% of lines ≥ 50 % resistant` },
     };
-    let scale = 'logit';
-    for (const k of ['logit', 'pct']) {
+    let scale = 'pct';
+    for (const k of ['pct', 'logit']) {
       const b = h('button', { type: 'button', 'aria-pressed': String(k === scale) }, SC[k].name);
       b.onclick = () => { scale = k; seg.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', String(x === b))); draw(); };
       seg.append(b);
