@@ -149,7 +149,6 @@
     <h2><span class="n">3</span>Which signals hold across models</h2>
     <p>Each trait was fitted with six kinship-based GAPIT models (MLM, CMLM, MLMM, SUPER, FarmCPU, BLINK) on two phenotype scales (glmer % and empirical logit), 12 fits in all. Each square is one fit where the signal passed Bonferroni 0.05. A signal found in most fits does not depend on the model or the scale.</p>
     <div id="signals"></div>
-    <details><summary id="signals-more"></summary><div id="signals-rest"></div></details>
   </section>
 
   <section class="card" id="effects">
@@ -407,10 +406,8 @@
         Array.from({ length: r.of }, (_, i) => h('span', { class: `pip${i < r.fits ? ' on' : ''}` })),
         h('span', { class: 'cnt' }, h('b', {}, String(r.fits)), ` of ${r.of}`)));
     const sorted = [...D.signals].sort((a, b) => b.fits - a.fits || b.lp - a.lp);
-    const main = sorted.filter((r) => r.fits >= 2), rest = sorted.filter((r) => r.fits < 2);
+    const main = sorted.filter((r) => r.fits >= 2);
     document.getElementById('signals').append(...main.map(row));
-    document.getElementById('signals-more').textContent = `${rest.length} more signals found in only one fit`;
-    document.getElementById('signals-rest').append(...rest.map(row));
   })();
 
   // 4. allele effects: dumbbell per locus
